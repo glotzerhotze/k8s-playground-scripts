@@ -494,8 +494,6 @@ mv ./kind /usr/bin
 echo "creating KIND cluster local and applying CNI configuration"
 ###
 kind create cluster --config /root/kind-cluster.yaml
-mkdir /root/.kube
-kind export kubeconfig --kubeconfig /root/.kube/config --name local
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
 sleep 120
 kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml
