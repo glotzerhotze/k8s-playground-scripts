@@ -325,7 +325,7 @@ helm template cilium/cilium \
     --set bandwidthManager.bbr="false" \
     --set cluster.name="local" \
     --set cluster.id=222 \
-    --set bgp.enabled=false \
+    --set bgp.enabled=true \
     --set bgp.announce.loadbalancerIP=true \
     --set bgp.announce.podCIDR=true \
     --set bgpControlPlane.enabled=true \

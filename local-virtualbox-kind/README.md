@@ -32,7 +32,15 @@ this will configure a virtualbox virtual machine, download the Ubuntu ISO image 
 
 please follow the on-screen menus - as you have to interact twice with the machine (choose install in grub menu and type "yes" upon installation)
 
-since we use a poor-mans approach to automating this setup, manual intervention is preferred here as other solutions would involve re-building the ISO image. see below sources for more information.
+since we use a poor-mans approach to automating this setup, manual intervention is preferred here as other solutions would involve re-building the ISO image. see sources below for more information.
+
+once the machine is done running through the install-phase, it will reboot and wait for the root-partition unlock password **virtualbox** to continue booting into the OS.
+
+you can login to the machine with user **virtualbox** using the password **virtualbox** - `sudo su -` and again issuing the standard password **virtualbox** will give you a root-shell.
+
+in the `/root` folder, you should find the script `kind.sh` - which is basically the same script as in the `<repo>/local-virtualbox-kind/autoinstall/kind.sh` folder.
+
+run the script with `bash -x /root/kind.sh` and wait until a 4-node-kind cluster is spawned inside the virtual machine.
 
 ## how to re-build configuration of ubuntu-autoinstaller
 * [ubuntu-22.04 - autoinstall explained](https://www.jimangel.io/posts/automate-ubuntu-22-04-lts-bare-metal/) - you will find how to re-generate `seed.iso` at the end of this link

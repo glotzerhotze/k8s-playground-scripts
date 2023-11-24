@@ -1,18 +1,11 @@
 @Echo off
 SET VMNAME=Ubuntu-2204-scripted
 SET OSTYPE=Ubuntu_64
-SET IMAGEARCH=amd64
 SET ISOPATH=%homepath%\Downloads\
 SET ISONAME=ubuntu-22.04.3-live-server-amd64.iso
-SET USER=hms
-SET FULLNAME=hsm-user
-SET PASSWORD=hms-internal
-SET INDEX=1
-SET LOCALE=de_DE
-SET FORMAT=VDI
-SET RAM=24576
-SET VRAM=16
-SET CPUCOUNT=4
+SET RAM=8096
+SET VRAM=64
+SET CPUCOUNT=2
 SET VirtualMachinePath=%userprofile%\virtual-machines\
 
 echo checking if the virtual machines folder exists
