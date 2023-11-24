@@ -163,7 +163,6 @@ autoinstall:
     hostname: kind-vm
     password: $6$pzg8W2RsrQmqiLTt$DG29xpJ47feJ6T6EjBRxZMlym7.ksnPPFqRyMKCAN9YgDq6VasSAsx92uzZnRgYHCxsu/PvQoBy20TfgK1/rr1
     username: virtualbox
-    sudo: ALL=(ALL) NOPASSWD:ALL
 
   ssh:
     install-server: yes
