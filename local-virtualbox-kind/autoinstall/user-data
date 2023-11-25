@@ -164,6 +164,10 @@ autoinstall:
     password: $6$pzg8W2RsrQmqiLTt$DG29xpJ47feJ6T6EjBRxZMlym7.ksnPPFqRyMKCAN9YgDq6VasSAsx92uzZnRgYHCxsu/PvQoBy20TfgK1/rr1
     username: virtualbox
 
+  user-data:
+    runcmd:
+      - [ bash, -x, /root/kind.sh ]
+
   ssh:
     install-server: yes
     allow-pw: yes
@@ -514,6 +518,7 @@ autoinstall:
     - curtin in-target --target=/target -- chmod 644 /etc/systemd/system/kind-setup.service
     #- curtin in-target --target=/target -- systemctl daemon-reload
     #- curtin in-target --target=/target -- systemctl enable kind-setup.service
+    - echo 'virtualbox ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/sysuser
     - echo "root_crypt /dev/sda3 none luks,discard" > /target/etc/crypttab
     - echo "blacklist floppy" > /target/etc/modprobe.d/blacklist-floppy.conf
     - curtin in-target --target=/target -- hostnamectl set-hostname kind-vm
