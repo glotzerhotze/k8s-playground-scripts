@@ -498,8 +498,7 @@ kind create cluster --config /root/kind-cluster.yaml
 mkdir /root/.kube
 kind export kubeconfig --kubeconfig /root/.kube/config --name local
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
-sleep 120
-kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml
+while ! kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml; do echo "Retrying to apply resources"; sleep 10; done
 
 echo "installing kubectl krew plugin manager"
 ###

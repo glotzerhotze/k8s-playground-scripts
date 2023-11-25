@@ -1,8 +1,12 @@
 @Echo off
-SET VMNAME=Ubuntu-2204-scripted
 SET OSTYPE=Ubuntu_64
 SET ISOPATH=%homepath%\Downloads\
-SET ISONAME=ubuntu-22.04.3-live-server-amd64.iso
+echo SET VMNAME=Ubuntu-2204-scripted
+echo SET ISOURL=https://releases.ubuntu.com/22.04.3/
+echo SET ISONAME=ubuntu-22.04.3-live-server-amd64.iso
+SET VMNAME=Ubuntu-2310-scripted
+SET ISOURL=https://releases.ubuntu.com/mantic/
+SET ISONAME=ubuntu-23.10-live-server-amd64.iso
 SET FORMAT=VDI
 SET RAM=8192
 SET VRAM=16
@@ -21,7 +25,7 @@ if exist %ISOPATH%\%ISONAME% (
     echo ISO file exists
 ) else (
     echo ISO file doesn't exist - downloading %ISONAME% to %ISOPATH%
-    powershell -Command "Invoke-WebRequest https://releases.ubuntu.com/22.04.3/%ISONAME% -OutFile %ISOPATH%\%ISONAME%"
+    powershell -Command "Invoke-WebRequest %ISOURL%%ISONAME% -OutFile %ISOPATH%\%ISONAME%"
 )
 
 echo check if VirtualBox has been installed already
