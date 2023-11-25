@@ -499,9 +499,10 @@ autoinstall:
       LnNoIHwgYmFzaAoKZWNobyAidGVzdGluZyB0aGUgY2x1c3RlciB2aWEgZWNob3NlcnZlciBjdXJs
       IgplY2hvICJidXQgZmlyc3QgbGV0J3Mgd2FpdCBmb3IgdGhlIGVjaG9zZXJ2ZXItZGVwbG95bWVu
       dCB0byBiZSBhdmFpbGFibGUiCmVjaG8gImN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5l
-      eGFtcGxlLmNvbSB8IGpxIgprdWJlY3RsIHdhaXQgLS1mb3I9Y29uZGl0aW9uPXJlYWR5IHBvZCAt
-      bCBhcHA9ZWNob3NlcnZlciAtbiBlY2hvc2VydmVyCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIu
-      a2luZC5leGFtcGxlLmNvbSB8IGpx
+      eGFtcGxlLmNvbSB8IGpxIgprdWJlY3RsIHdhaXQgLS1rdWJlY29uZmlnIC9yb290Ly5rdWJlL2Nv
+      bmZpZyAtLWZvcj1jb25kaXRpb249cmVhZHkgLS10aW1lb3V0PS0xIHBvZCAtbCBhcHA9ZWNob3Nl
+      cnZlciAtbiBlY2hvc2VydmVyCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5leGFtcGxl
+      LmNvbSB8IGpx
       EOF
     - base64 -d /target/root/kind.sh.b64 > /target/root/kind.sh
     - chmod 755 /target/root/kind.sh

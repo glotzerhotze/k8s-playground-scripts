@@ -36,11 +36,11 @@ since we use a poor-mans approach to automating this setup, manual intervention 
 
 once the machine is done running through the install-phase, it will reboot and wait for the root-partition unlock password **virtualbox** to continue booting into the OS.
 
-you can login to the machine with user **virtualbox** using the password **virtualbox** - `sudo su -` and again issuing the standard password **virtualbox** will give you a root-shell.
+`cloud-init` will take care of calling the `/root/kind.sh` script to provision the machine with a kind cluster.
 
-in the `/root` folder, you should find the script `kind.sh` - which is basically the same script as in the `<repo>/local-virtualbox-kind/autoinstall/kind.sh` folder.
+when cloud-init is ready, login in with `virtualbox` user and password `virtualbox` and use `sudo su -` to become root user.
 
-run the script with `bash -x /root/kind.sh` and wait until a 4-node-kind cluster is spawned inside the virtual machine.
+`k9s` or `kubectl get nodes` should work and allow you to interact with the cluster now.
 
 ## how to re-build configuration of ubuntu-autoinstaller
 * [ubuntu-22.04 - autoinstall explained](https://www.jimangel.io/posts/automate-ubuntu-22-04-lts-bare-metal/) - you will find how to re-generate `seed.iso` at the end of this link

@@ -2,3 +2,4 @@
 **/.terrform*
 **/terraform.tfstate
 **/terraform.tfstate.backup
+azure-kind/.terraform*

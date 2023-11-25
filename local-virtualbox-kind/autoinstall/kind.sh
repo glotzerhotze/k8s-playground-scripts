@@ -525,5 +525,5 @@ curl -s https://fluxcd.io/install.sh | bash
 echo "testing the cluster via echoserver curl"
 echo "but first let's wait for the echoserver-deployment to be available"
 echo "curl -L http://echoserver.kind.example.com | jq"
-kubectl wait --for=condition=ready pod -l app=echoserver -n echoserver
+kubectl wait --kubeconfig /root/.kube/config --for=condition=ready --timeout=-1 pod -l app=echoserver -n echoserver
 curl -L http://echoserver.kind.example.com | jq
