@@ -495,8 +495,7 @@ echo "creating KIND cluster local and applying CNI configuration"
 ###
 kind create cluster --config /root/kind-cluster.yaml
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
-sleep 120
-while not true; do kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml; done
+while ! kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml; do echo "Retrying to apply resources"; sleep 10; done
 
 echo "installing kubectl krew plugin manager"
 ###
