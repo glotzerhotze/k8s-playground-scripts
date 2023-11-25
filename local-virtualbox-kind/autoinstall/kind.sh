@@ -325,7 +325,7 @@ helm template cilium/cilium \
     --set bandwidthManager.bbr="false" \
     --set cluster.name="local" \
     --set cluster.id=222 \
-    --set bgp.enabled=true \
+    --set bgp.enabled=false \
     --set bgp.announce.loadbalancerIP=true \
     --set bgp.announce.podCIDR=true \
     --set bgpControlPlane.enabled=true \
@@ -372,7 +372,7 @@ metadata:
 spec:
   nodeSelector:
     matchLabels:
-      hms/bgp: cluster
+      bgp: cluster
   virtualRouters:
   - exportPodCIDR: true
     localASN: 65200
@@ -496,7 +496,7 @@ echo "creating KIND cluster local and applying CNI configuration"
 kind create cluster --config /root/kind-cluster.yaml
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
 sleep 120
-kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml
+while not true; do kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml; done
 
 echo "installing kubectl krew plugin manager"
 ###

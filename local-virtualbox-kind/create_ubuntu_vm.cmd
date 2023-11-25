@@ -3,9 +3,10 @@ SET VMNAME=Ubuntu-2204-scripted
 SET OSTYPE=Ubuntu_64
 SET ISOPATH=%homepath%\Downloads\
 SET ISONAME=ubuntu-22.04.3-live-server-amd64.iso
-SET RAM=8096
-SET VRAM=64
-SET CPUCOUNT=2
+SET FORMAT=VDI
+SET RAM=8192
+SET VRAM=16
+SET CPUCOUNT=1
 SET VirtualMachinePath=%userprofile%\virtual-machines\
 
 echo checking if the virtual machines folder exists
