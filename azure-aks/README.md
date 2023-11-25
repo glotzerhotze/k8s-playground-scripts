@@ -189,7 +189,7 @@ helm template cilium/cilium \
   > ./cilium-1.14.4-vxlan.yaml
 ```
 
-* last step is to apply the created CNI configuration to the cluster so it will transistion the node from **NotReady** to **Ready**
+* last step is to apply the created CNI configuration to the cluster, so it will transition the node from **NotReady** to **Ready**
 
 ```bash
 kubectl apply -f cilium-1.14.4-vxlan.yaml

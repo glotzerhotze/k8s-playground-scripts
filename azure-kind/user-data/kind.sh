@@ -373,7 +373,7 @@ metadata:
 spec:
   nodeSelector:
     matchLabels:
-      hms/bgp: cluster
+      bgp: cluster
   virtualRouters:
   - exportPodCIDR: true
     localASN: 65200

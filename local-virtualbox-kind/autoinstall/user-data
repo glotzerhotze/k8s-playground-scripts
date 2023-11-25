@@ -497,7 +497,7 @@ autoinstall:
     - base64 -d /target/root/kind.sh.b64 > /target/root/kind.sh
     - chmod 755 /target/root/kind.sh
     - |
-      cat << EOF > /target/etc/systemd/system/kind-setup.service
+      cat > /target/etc/systemd/system/kind-setup.service << EOF
       [Unit]
       Description=Kind Cluster Setup
 
@@ -510,7 +510,7 @@ autoinstall:
       WantedBy=multi-user.target
 
       EOF
-    - curtin chmod 755 /target/etc/systemd/system/kind-setup.service
+    - curtin in-target --target=/target -- chmod 755 /etc/systemd/system/kind-setup.service
     - curtin in-target --target=/target -- systemctl daemon-reload && systemctl enable kind-setup.service
     - echo "root_crypt /dev/sda3 none luks,discard" > /target/etc/crypttab
     - echo "blacklist floppy" > /target/etc/modprobe.d/blacklist-floppy.conf
