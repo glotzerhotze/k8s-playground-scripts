@@ -493,8 +493,7 @@ autoinstall:
       aHR0cHM6Ly9mbHV4Y2QuaW8vaW5zdGFsbC5zaCB8IGJhc2gKCmVjaG8gInRlc3RpbmcgdGhlIGNs
       dXN0ZXIgdmlhIGVjaG9zZXJ2ZXIgY3VybCIKZWNobyAiY3VybCAtTCBodHRwOi8vZWNob3NlcnZl
       ci5raW5kLmV4YW1wbGUuY29tIHwganEiCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5l
-      eGFtcGxlLmNvbSB8IGpxjb20gfCBqcSIKY3Vy
-      bCAtTCBodHRwOi8vZWNob3NlcnZlci5raW5kLmV4YW1wbGUuY29tIHwganE=
+      eGFtcGxlLmNvbSB8IGpx
       EOF
     - base64 -d /target/root/kind.sh.b64 > /target/root/kind.sh
     - chmod 755 /target/root/kind.sh
