@@ -494,7 +494,7 @@ mv ./kind /usr/bin
 echo "creating KIND cluster local and applying CNI configuration"
 ###
 kind create cluster --config /root/kind-cluster.yaml
-mkdir /root/.kube
+mkdir -p /root/.kube
 kind export kubeconfig --kubeconfig /root/.kube/config --name local
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
 while ! kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml; do echo "Retrying to apply resources"; sleep 10; done
@@ -523,5 +523,7 @@ echo "installing flux latest version to manage the local cluster in a next step"
 curl -s https://fluxcd.io/install.sh | bash
 
 echo "testing the cluster via echoserver curl"
+echo "but first let's wait for the echoserver-deployment to be available"
 echo "curl -L http://echoserver.kind.example.com | jq"
+kubectl wait --for=condition=ready pod -l app=echoserver -n echoserver
 curl -L http://echoserver.kind.example.com | jq
