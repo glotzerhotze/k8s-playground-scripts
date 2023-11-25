@@ -1,0 +1,45 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: gini-challenge
+networking:
+  disableDefaultCNI: true
+  kubeProxyMode: none
+  podSubnet: "172.16.0.0/16"
+  serviceSubnet: "172.17.0.0/16"
+  apiServerAddress: "192.168.0.1"
+  apiServerPort: 6443
+nodes:
+  - role: control-plane
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "cpu=fast"
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "gpu=a100"
+          taints:
+            - key: "gini.net/gpu"
+              operator: "Equal"
+              value: "a100"
+              effect: "NoExecute"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "gpu=a100"
+          taints:
+            - key: "gini.net/gpu"
+              operator: "Equal"
+              value: "a100"
+              effect: "NoExecute"
+
