@@ -470,38 +470,38 @@ autoinstall:
       by9kbC92MC4yMC4wL2tpbmQtbGludXgtYW1kNjQKY2htb2QgK3ggLi9raW5kCm12IC4va2luZCAv
       dXNyL2JpbgoKZWNobyAiY3JlYXRpbmcgS0lORCBjbHVzdGVyIGxvY2FsIGFuZCBhcHBseWluZyBD
       TkkgY29uZmlndXJhdGlvbiIKIyMjCmtpbmQgY3JlYXRlIGNsdXN0ZXIgLS1jb25maWcgL3Jvb3Qv
-      a2luZC1jbHVzdGVyLnlhbWwKbWtkaXIgLXAgL3Jvb3QvLmt1YmUKa2luZCBnZXQga3ViZWNvbmZp
-      ZyAtLW5hbWUgbG9jYWwgLS1rdWJlY29uZmlnIC9yb290Ly5rdWJlL2NvbmZpZwprdWJlY3RsIGFw
-      cGx5IC1mIC9yb290L2NpbGl1bS0xLjE0LjQtZGlyZWN0LXJvdXRpbmcueWFtbAp3aGlsZSAhIGt1
-      YmVjdGwgYXBwbHkgLWYgL3Jvb3QvYmdwLXBlZXJpbmctcG9saWN5LnlhbWwgLWYgL3Jvb3QvYmdw
-      LWlwcG9vbC55YW1sIC1mIC9yb290L2VjaG9zZXJ2ZXIueWFtbDsgZG8gZWNobyAiUmV0cnlpbmcg
-      dG8gYXBwbHkgcmVzb3VyY2VzIjsgc2xlZXAgMTA7IGRvbmUKCmVjaG8gImluc3RhbGxpbmcga3Vi
-      ZWN0bCBrcmV3IHBsdWdpbiBtYW5hZ2VyIgojIyMKT1M9IiQodW5hbWUgfCB0ciAnWzp1cHBlcjpd
-      JyAnWzpsb3dlcjpdJykiCkFSQ0g9IiQodW5hbWUgLW0gfCBzZWQgLWUgJ3MveDg2XzY0L2FtZDY0
-      LycgLWUgJ3MvXChhcm1cKVwoNjRcKVw/LiovXDFcMi8nIC1lICdzL2FhcmNoNjQkL2FybTY0Lycp
-      IgpLUkVXPSJrcmV3LSR7T1N9XyR7QVJDSH0iCmN1cmwgLWZzU0xPICJodHRwczovL2dpdGh1Yi5j
-      b20va3ViZXJuZXRlcy1zaWdzL2tyZXcvcmVsZWFzZXMvbGF0ZXN0L2Rvd25sb2FkLyR7S1JFV30u
-      dGFyLmd6Igp0YXIgenh2ZiAiJHtLUkVXfS50YXIuZ3oiCi4vIiR7S1JFV30iIGluc3RhbGwga3Jl
-      dwplY2hvICdleHBvcnQgUEFUSD0iJHtLUkVXX1JPT1Q6LSRIT01FLy5rcmV3fS9iaW46JFBBVEgi
-      JyA+PiAvcm9vdC8uYmFzaHJjCgplY2hvICJpbnN0YWxsaW5nIGdpdGh1YiBDTEkgdG9vbCIKIyMj
-      CmN1cmwgLWZzU0wgaHR0cHM6Ly9jbGkuZ2l0aHViLmNvbS9wYWNrYWdlcy9naXRodWJjbGktYXJj
-      aGl2ZS1rZXlyaW5nLmdwZyB8IHN1ZG8gZGQgb2Y9L3Vzci9zaGFyZS9rZXlyaW5ncy9naXRodWJj
-      bGktYXJjaGl2ZS1rZXlyaW5nLmdwZwpjaG1vZCBnbytyIC91c3Ivc2hhcmUva2V5cmluZ3MvZ2l0
-      aHViY2xpLWFyY2hpdmUta2V5cmluZy5ncGcKZWNobyAiZGViIFthcmNoPSQoZHBrZyAtLXByaW50
-      LWFyY2hpdGVjdHVyZSkgc2lnbmVkLWJ5PS91c3Ivc2hhcmUva2V5cmluZ3MvZ2l0aHViY2xpLWFy
-      Y2hpdmUta2V5cmluZy5ncGddIGh0dHBzOi8vY2xpLmdpdGh1Yi5jb20vcGFja2FnZXMgc3RhYmxl
-      IG1haW4iIHwgc3VkbyB0ZWUgL2V0Yy9hcHQvc291cmNlcy5saXN0LmQvZ2l0aHViLWNsaS5saXN0
-      ID4gL2Rldi9udWxsCkRFQklBTl9GUk9OVEVORD1ub25pbnRlcmFjdGl2ZSBhcHQtZ2V0IC15IHVw
-      ZGF0ZQpERUJJQU5fRlJPTlRFTkQ9bm9uaW50ZXJhY3RpdmUgYXB0LWdldCAteSBpbnN0YWxsIGdo
-      CkRFQklBTl9GUk9OVEVORD1ub25pbnRlcmFjdGl2ZSBhcHQtZ2V0IC15IGNsZWFuCgplY2hvICJp
-      bnN0YWxsaW5nIGZsdXggbGF0ZXN0IHZlcnNpb24gdG8gbWFuYWdlIHRoZSBsb2NhbCBjbHVzdGVy
-      IGluIGEgbmV4dCBzdGVwIgojIyMKY3VybCAtcyBodHRwczovL2ZsdXhjZC5pby9pbnN0YWxsLnNo
-      IHwgYmFzaAoKZWNobyAidGVzdGluZyB0aGUgY2x1c3RlciB2aWEgZWNob3NlcnZlciBjdXJsIgpl
-      Y2hvICJidXQgZmlyc3QgbGV0J3Mgd2FpdCBmb3IgdGhlIGVjaG9zZXJ2ZXItZGVwbG95bWVudCB0
-      byBiZSBhdmFpbGFibGUiCmVjaG8gImN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5leGFt
-      cGxlLmNvbSB8IGpxIgprdWJlY3RsIHdhaXQgLS1mb3I9Y29uZGl0aW9uPXJlYWR5IHBvZCAtbCBh
-      cHA9ZWNob3NlcnZlciAtbiBlY2hvc2VydmVyCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2lu
-      ZC5leGFtcGxlLmNvbSB8IGpx
+      a2luZC1jbHVzdGVyLnlhbWwKbWtkaXIgLXAgL3Jvb3QvLmt1YmUKa2luZCBleHBvcnQga3ViZWNv
+      bmZpZyAtLW5hbWUgbG9jYWwgLS1rdWJlY29uZmlnIC9yb290Ly5rdWJlL2NvbmZpZwprdWJlY3Rs
+      IGFwcGx5IC1mIC9yb290L2NpbGl1bS0xLjE0LjQtZGlyZWN0LXJvdXRpbmcueWFtbAp3aGlsZSAh
+      IGt1YmVjdGwgYXBwbHkgLWYgL3Jvb3QvYmdwLXBlZXJpbmctcG9saWN5LnlhbWwgLWYgL3Jvb3Qv
+      YmdwLWlwcG9vbC55YW1sIC1mIC9yb290L2VjaG9zZXJ2ZXIueWFtbDsgZG8gZWNobyAiUmV0cnlp
+      bmcgdG8gYXBwbHkgcmVzb3VyY2VzIjsgc2xlZXAgMTA7IGRvbmUKCmVjaG8gImluc3RhbGxpbmcg
+      a3ViZWN0bCBrcmV3IHBsdWdpbiBtYW5hZ2VyIgojIyMKT1M9IiQodW5hbWUgfCB0ciAnWzp1cHBl
+      cjpdJyAnWzpsb3dlcjpdJykiCkFSQ0g9IiQodW5hbWUgLW0gfCBzZWQgLWUgJ3MveDg2XzY0L2Ft
+      ZDY0LycgLWUgJ3MvXChhcm1cKVwoNjRcKVw/LiovXDFcMi8nIC1lICdzL2FhcmNoNjQkL2FybTY0
+      LycpIgpLUkVXPSJrcmV3LSR7T1N9XyR7QVJDSH0iCmN1cmwgLWZzU0xPICJodHRwczovL2dpdGh1
+      Yi5jb20va3ViZXJuZXRlcy1zaWdzL2tyZXcvcmVsZWFzZXMvbGF0ZXN0L2Rvd25sb2FkLyR7S1JF
+      V30udGFyLmd6Igp0YXIgenh2ZiAiJHtLUkVXfS50YXIuZ3oiCi4vIiR7S1JFV30iIGluc3RhbGwg
+      a3JldwplY2hvICdleHBvcnQgUEFUSD0iJHtLUkVXX1JPT1Q6LSRIT01FLy5rcmV3fS9iaW46JFBB
+      VEgiJyA+PiAvcm9vdC8uYmFzaHJjCgplY2hvICJpbnN0YWxsaW5nIGdpdGh1YiBDTEkgdG9vbCIK
+      IyMjCmN1cmwgLWZzU0wgaHR0cHM6Ly9jbGkuZ2l0aHViLmNvbS9wYWNrYWdlcy9naXRodWJjbGkt
+      YXJjaGl2ZS1rZXlyaW5nLmdwZyB8IHN1ZG8gZGQgb2Y9L3Vzci9zaGFyZS9rZXlyaW5ncy9naXRo
+      dWJjbGktYXJjaGl2ZS1rZXlyaW5nLmdwZwpjaG1vZCBnbytyIC91c3Ivc2hhcmUva2V5cmluZ3Mv
+      Z2l0aHViY2xpLWFyY2hpdmUta2V5cmluZy5ncGcKZWNobyAiZGViIFthcmNoPSQoZHBrZyAtLXBy
+      aW50LWFyY2hpdGVjdHVyZSkgc2lnbmVkLWJ5PS91c3Ivc2hhcmUva2V5cmluZ3MvZ2l0aHViY2xp
+      LWFyY2hpdmUta2V5cmluZy5ncGddIGh0dHBzOi8vY2xpLmdpdGh1Yi5jb20vcGFja2FnZXMgc3Rh
+      YmxlIG1haW4iIHwgc3VkbyB0ZWUgL2V0Yy9hcHQvc291cmNlcy5saXN0LmQvZ2l0aHViLWNsaS5s
+      aXN0ID4gL2Rldi9udWxsCkRFQklBTl9GUk9OVEVORD1ub25pbnRlcmFjdGl2ZSBhcHQtZ2V0IC15
+      IHVwZGF0ZQpERUJJQU5fRlJPTlRFTkQ9bm9uaW50ZXJhY3RpdmUgYXB0LWdldCAteSBpbnN0YWxs
+      IGdoCkRFQklBTl9GUk9OVEVORD1ub25pbnRlcmFjdGl2ZSBhcHQtZ2V0IC15IGNsZWFuCgplY2hv
+      ICJpbnN0YWxsaW5nIGZsdXggbGF0ZXN0IHZlcnNpb24gdG8gbWFuYWdlIHRoZSBsb2NhbCBjbHVz
+      dGVyIGluIGEgbmV4dCBzdGVwIgojIyMKY3VybCAtcyBodHRwczovL2ZsdXhjZC5pby9pbnN0YWxs
+      LnNoIHwgYmFzaAoKZWNobyAidGVzdGluZyB0aGUgY2x1c3RlciB2aWEgZWNob3NlcnZlciBjdXJs
+      IgplY2hvICJidXQgZmlyc3QgbGV0J3Mgd2FpdCBmb3IgdGhlIGVjaG9zZXJ2ZXItZGVwbG95bWVu
+      dCB0byBiZSBhdmFpbGFibGUiCmVjaG8gImN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5l
+      eGFtcGxlLmNvbSB8IGpxIgprdWJlY3RsIHdhaXQgLS1mb3I9Y29uZGl0aW9uPXJlYWR5IHBvZCAt
+      bCBhcHA9ZWNob3NlcnZlciAtbiBlY2hvc2VydmVyCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIu
+      a2luZC5leGFtcGxlLmNvbSB8IGpx
       EOF
     - base64 -d /target/root/kind.sh.b64 > /target/root/kind.sh
     - chmod 755 /target/root/kind.sh
