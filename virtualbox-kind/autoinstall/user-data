@@ -3,6 +3,7 @@ version: 1
 chpasswd:
   list:
     - installer:$6$pzg8W2RsrQmqiLTt$DG29xpJ47feJ6T6EjBRxZMlym7.ksnPPFqRyMKCAN9YgDq6VasSAsx92uzZnRgYHCxsu/PvQoBy20TfgK1/rr1
+## to access the installer via ssh - fix the following:
 # ssh_authorized_keys:
 #   - <add-your-ssh-key-and-refresh-the-seed.iso-file>
 
@@ -10,8 +11,6 @@ autoinstall:
   version: 1
   refresh-installer:
     update: true
-#  interactive-sections:
-#  - storage
 
   # localization settings
   locale: de_DE.UTF-8
@@ -500,9 +499,9 @@ autoinstall:
       IgplY2hvICJidXQgZmlyc3QgbGV0J3Mgd2FpdCBmb3IgdGhlIGVjaG9zZXJ2ZXItZGVwbG95bWVu
       dCB0byBiZSBhdmFpbGFibGUiCmVjaG8gImN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5l
       eGFtcGxlLmNvbSB8IGpxIgprdWJlY3RsIHdhaXQgLS1rdWJlY29uZmlnIC9yb290Ly5rdWJlL2Nv
-      bmZpZyAtLWZvcj1jb25kaXRpb249cmVhZHkgLS10aW1lb3V0PS0xIHBvZCAtbCBhcHA9ZWNob3Nl
-      cnZlciAtbiBlY2hvc2VydmVyCmN1cmwgLUwgaHR0cDovL2VjaG9zZXJ2ZXIua2luZC5leGFtcGxl
-      LmNvbSB8IGpx
+      bmZpZyAtLWZvcj1jb25kaXRpb249cmVhZHkgLS10aW1lb3V0PS0xbXMgcG9kIC1sIGFwcD1lY2hv
+      c2VydmVyIC1uIGVjaG9zZXJ2ZXIKY3VybCAtTCBodHRwOi8vZWNob3NlcnZlci5raW5kLmV4YW1w
+      bGUuY29tIHwganE=
       EOF
     - base64 -d /target/root/kind.sh.b64 > /target/root/kind.sh
     - chmod 755 /target/root/kind.sh
