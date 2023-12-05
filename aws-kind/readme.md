@@ -2,15 +2,10 @@
 
 ## How to use
 
-Terraform returns an output that contain DNS names for all candidates.
-That DNS name should be used by candidates and reviewers.
+Run the terraform scripts, wait for the machine to provision.
 
-### For a candidate
-```
-ssh $DNS_NAME -l ubuntu
-```
+Once you get the public IP, ssh to the machine like that:
 
-### For a reviewer
-```
-ssh $DNS_NAME -l tk -i ~/.ssh/gini-dev
+```bash
+ssh ubuntu@your.public.ip.address
 ```

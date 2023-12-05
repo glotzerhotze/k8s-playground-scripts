@@ -1,12 +1,19 @@
 # local-kind
 
+## disclaimer
 this is supposed to be run directly on your ubuntu-linux machine as the root user.
 
-doing so will install several tools and manipulate your DNS resolver.
+doing so will install several tools and, amongst others, manipulate your currently configured DNS settings.
 
 **this is a dirty hack script that won't clean-up changes done to your machine**
 
 **so read the script and understand what it does to your machine**
+
+And since you've been officially warned now - there'll be dragons ahead.
+
+At least make an effort to understand what's happening ;-)
+
+## assumptions of this setup
 
 please be aware of the following:
 * lines 10-11 - will try to get the local IP address to bind kind and thus the k8s api to (see line 344) - make sure this works, else hard-code your local IP
@@ -25,4 +32,12 @@ kind export kubeconfig --kubeconfig /root/.kube/config --name local
 kubectl apply -f /root/cilium-1.14.4-direct-routing.yaml
 sleep 120
 kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root/echoserver.yaml
+```
+
+## How does it work?
+most of the time you should be able to grep through a script and roughly understand what's heppening at each step.
+
+
+```bash
+cat kind.sh | grep
 ```

@@ -11,13 +11,13 @@ SET FORMAT=VDI
 SET RAM=8192
 SET VRAM=16
 SET CPUCOUNT=1
-SET VirtualMachinePath=%userprofile%\virtual-machines\
+SET VMPATH=%userprofile%\virtual-machines\
 
 echo checking if the virtual machines folder exists
-if exist %VirtualMachinePath% (
-    echo %VirtualMachinePath% folder already exists
+if exist %VMPATH% (
+    echo %VMPATH% folder already exists
 ) else (
-    mkdir %VirtualMachinePath%
+    mkdir %VMPATH%
 )
 
 echo checking if a download of %ISONAME% is needed
@@ -49,7 +49,7 @@ if not exist "%VBOXMANAGE%" (
 echo delete the old VM
 "%VBOXMANAGE%" controlvm "%VMNAME%" poweroff >nul 2>nul
 "%VBOXMANAGE%" unregistervm --delete "%VMNAME%" >nul 2>nul
-del /S %VirtualMachinePath%%VMNAME%
+del /S %VMPATH%%VMNAME%
 
 echo create a new VM
 "%VBOXMANAGE%" createvm --name "%VMNAME%" --ostype "%OSTYPE%" --register >nul 2>nul
@@ -65,8 +65,8 @@ echo modify networking to have NAT on enp0s3 and hostonly networking on enp0s8
 "%VBOXMANAGE%" modifyvm "%VMNAME%" --nic2 hostonly --nictype2 virtio --hostonlyadapter2 "VirtualBox Host-Only Ethernet Adapter"
 
 echo modify storage to mount root device, install ISO and VBoxGuest tools
-"%VBOXMANAGE%" createmedium disk --filename "%VirtualMachinePath%%VMNAME%\%VMNAME%" --size 65536 --format %FORMAT% --variant Standard
-"%VBOXMANAGE%" storageattach "%VMNAME%" --storagectl "SATA" --port 1 --device 0 --type hdd --medium  "%VirtualMachinePath%%VMNAME%\%VMNAME%.vdi"
+"%VBOXMANAGE%" createmedium disk --filename "%VMPATH%%VMNAME%\%VMNAME%" --size 65536 --format %FORMAT% --variant Standard
+"%VBOXMANAGE%" storageattach "%VMNAME%" --storagectl "SATA" --port 1 --device 0 --type hdd --medium  "%VMPATH%%VMNAME%\%VMNAME%.vdi"
 "%VBOXMANAGE%" storageattach "%VMNAME%" --storagectl "SATA" --port 2 --device 0 --type dvddrive --medium "%ISOPATH%%ISONAME%"
 "%VBOXMANAGE%" storageattach "%VMNAME%" --storagectl "SATA" --port 3 --device 0 --type dvddrive --medium "autoinstall\seed.iso"
 "%VBOXMANAGE%" storageattach "%VMNAME%" --storagectl "SATA" --port 4 --device 0 --type dvddrive --medium "%VBOXGUEST%"

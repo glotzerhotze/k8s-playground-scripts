@@ -1,44 +1,29 @@
 resource "aws_instance" "kind" {
-
-  ami                         = var.ami
-  associate_public_ip_address = true
-  availability_zone           = aws_subnet.public.availability_zone
-  cpu_core_count              = 2
-  cpu_threads_per_core        = 2
-
-  credit_specification {
-    cpu_credits = "unlimited"
-  }
-
-  disable_api_stop        = false
-  disable_api_termination = false
-  ebs_optimized           = true
+  ami                                  = var.ami
+  associate_public_ip_address          = true
+  availability_zone                    = aws_default_subnet.kind.availability_zone
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = true
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = var.instance_type
+  key_name                             = aws_key_pair.kind.key_name
+  source_dest_check                    = false
+  subnet_id                            = aws_default_subnet.kind.id
+  user_data                            = file("./user-data/user-data.sh")
+  user_data_replace_on_change          = false
+  vpc_security_group_ids               = [ aws_security_group.kind.id ]
+  depends_on                           = [ aws_internet_gateway.kind ]
 
   enclave_options {
     enabled = false
   }
 
-  get_password_data                    = false
-  hibernation                          = false
-  iam_instance_profile                 = ""
-  instance_initiated_shutdown_behavior = "stop"
-  instance_type                        = var.instance_type
-  ipv6_address_count                   = 1
-  key_name                             = aws_key_pair.kind.key_name
-
-  maintenance_options {
-    auto_recovery = "default"
-  }
   metadata_options {
     http_endpoint               = "enabled"
     http_put_response_hop_limit = 1
     http_tokens                 = "optional"
     instance_metadata_tags      = "enabled"
-  }
-
-  private_dns_name_options {
-    enable_resource_name_dns_a_record    = true
-    enable_resource_name_dns_aaaa_record = true
   }
 
   root_block_device {
@@ -51,10 +36,6 @@ resource "aws_instance" "kind" {
     volume_size           = 64
     volume_type           = "gp3"
   }
-
-  security_groups   = []
-  source_dest_check = false
-  subnet_id         = aws_subnet.public.id
 
   tags = {
     Name = "kind"
@@ -71,6 +52,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -88,6 +70,7 @@ resource "aws_instance" "kind" {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
       user = "ubuntu"
+      private_key = file("~/.ssh/id_rsa")
     }
   }
 
@@ -98,6 +81,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -109,6 +93,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -120,6 +105,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -131,6 +117,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -142,6 +129,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -153,6 +141,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -164,6 +153,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -175,6 +165,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -186,6 +177,7 @@ resource "aws_instance" "kind" {
     connection {
       host = coalesce(self.public_ip, self.private_ip)
       type = "ssh"
+      private_key = file("~/.ssh/id_rsa")
       user = "ubuntu"
     }
   }
@@ -196,9 +188,4 @@ resource "aws_instance" "kind" {
       key_name
     ]
   }
-
-  tenancy                     = "default"
-  user_data                   = file("./user-data/user-data.sh")
-  user_data_replace_on_change = false
-  vpc_security_group_ids      = [ aws_default_security_group.default.id ]
 }

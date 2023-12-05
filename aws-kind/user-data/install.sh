@@ -4,7 +4,7 @@ apt-get -y update
 apt-get -y upgrade
 set -e
 
-export MY_SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHyXakAI89DNiP3MLSumKiqoyJ9dfudFBylfGgyRhqr tk@ginimachine.local"
+export MY_SSH_KEY=""
 export MY_USERNAME="tk"
 export MY_SNAP="remove"
 ## if you want too KEEP snap stuff
