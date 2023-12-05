@@ -117,43 +117,4 @@ mv /.kube /root/.kube
 cp -PRv /root/.kube /home/ubuntu/.kube && sudo chown -Rv ubuntu:ubuntu /home/ubuntu/.kube
 cp -PRv /root/.kube /home/tk/.kube && sudo chown -Rv tk:tk /home/tk/.kube
 
-## cat << 'EOF' > /home/ubuntu/kronos-service-setup.txt
-## Dear candidate,
-##
-## as you probably see in the cluster, there is a definition of a service of "type: LoadBalancer"
-## this functionality usually comes bundled with the cloud provider that you chose to utilize for the setup.
-## since we have banks as customers who are very conservative with the data, we are bound to run on real physical hardware
-## in our production setup. thus we can't rely on the proprietary cloud-provider solutions to use those kind of service
-## definitions in the cluster.
-##
-## the good news is that there are several projects trying to fill this gap. for example, there is:
-##
-##   * the metal-LB project which can be found here -->  https://metallb.universe.tf
-##   * then there is cilium, which just recently implemented a BGP feature based on the metal-LB project
-##     --> https://docs.cilium.io/en/v1.12/gettingstarted/bgp/
-##   * and all this evolved from a setup integrating kube-router to achieve the capabilities we are looking for
-##     --> https://docs.cilium.io/en/v1.12/gettingstarted/kube-router/
-##
-## so as you can see, there are several options to choose from. currently the service is in pending. the objective of this
-## task is to implement a solution that will allow the cluster to reconcile and deploy a service of "typ: LoadBalancer"
-##
-## please use the following information to make this work:
-##
-##  * the internal BGP between the cluster nodes is currently using ASN65010
-##  * the external BGP router (frr) on the host-machine is currently using ASN65000
-##  * the pool of addresses to use for the services should be 172.18.0.100-172.18.0.200
-##  * it would make sense with the current setup on the host-machine to utilize ASN65100 for peering with your solution
-##  * you are not bound to the BGP implementation if there are other means to provide the functionality
-##
-## with the above information it should be possible to integrate a solution to solve the issue.
-## no matter what implementation you go for, please make sure that you can reach the service from the host-machine itself,
-## as this would be the cluster-external access that a service of "type: LoadBalancer" grants and that we are looking to
-## achieve with this assignment
-##
-## please ask questions if you should get stuck - I'll try to answer them via email as fast as possible.
-##
-## good luck
-##
-## EOF
-
 echo "DONE WITH CLOUD-INIT USER-DATA"
