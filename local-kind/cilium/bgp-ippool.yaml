@@ -3,5 +3,6 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: "bgp-svc-ips-cluster"
 spec:
-  cidrs:
-  - cidr: "172.18.0.128/25"
+  allowFirstLastIPs: "No"
+  blocks:
+    - cidr: "172.18.0.128/25"

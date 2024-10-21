@@ -35,8 +35,7 @@ kubectl apply -f /root/bgp-peering-policy.yaml -f /root/bgp-ippool.yaml -f /root
 ```
 
 ## How does it work?
-most of the time you should be able to grep through a script and roughly understand what's heppening at each step.
-
+most of the time you should be able to grep through a script and roughly understand what's happening at each step.
 
 ```bash
 cat kind.sh | grep

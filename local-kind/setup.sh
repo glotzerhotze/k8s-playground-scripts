@@ -3,13 +3,22 @@
 
 set -e
 
+########################################################################################################################
+## TODO: Adjust Variables to your environment - updated to latest versions on 30.09.2024 by tkl
+########################################################################################################################
+export HELM_VERSION="3.16.1"
+export K9S_VERSION="0.32.5"
+export KIND_VERSION="0.24.0" ## check kubernetes version - 0.24.0 --> 1.31.0 / 0.23.0 --> 1.30.0 / 0.22.0 --> 1.29.2
+export CILIUM_VERSION="1.16.2"
+export K8S_VERSION="1.31.0" ## make sure K8S_VERSION is in sync with the k8s version being used by kind
+
 DEBIAN_FRONTEND=noninteractive apt-get -y update
 DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
 echo "get current IP address to use for controlplane access"
 ###
-CURRENT_INTERFACE=$(ip -br l | awk '$1 !~ "lo|vir|wl|br|docker|veth|tailscale|enp0s3" { print $1}')
-CURRENT_IP=$(ip a | grep ${CURRENT_INTERFACE} | grep inet | tr -s " " | cut -d' ' -f3 | cut -d'/' -f1)
+export CURRENT_INTERFACE=$(ip -br l | awk '$1 !~ "lo|vir|wl|br|docker|veth|tailscale|enp0s3" { print $1}')
+export CURRENT_IP=$(ip a | grep ${CURRENT_INTERFACE} | grep inet | tr -s " " | cut -d' ' -f3 | cut -d'/' -f1)
 
 echo "Install some packages that are needed"
 ###
@@ -34,20 +43,20 @@ grep -qF "session required pam_limits.so" /etc/pam.d/common-session || echo "ses
 grep -qF "session required pam_limits.so" /etc/pam.d/common-session-noninteractive || echo "session required pam_limits.so" >> /etc/pam.d/common-session-noninteractive
 sysctl -p
 
-echo "Creating /etc/resolve.conf.k8s for the cluster"
-###
-cp ./resolv.conf /etc/resolv.conf.k8s
+## echo "Creating /etc/resolve.conf.k8s for the cluster"
+## ###
+## cp ./resolv.conf /etc/resolv.conf.k8s
 
-echo "Disable local resolver with systemd-resolved DNS configuration"
-###
-systemctl mask systemd-resolved
-mv /etc/resolv.conf /etc/resolv.conf.kind-backup
-ln -s /etc/resolv.conf.k8s /etc/resolv.conf
+## echo "Disable local resolver with systemd-resolved DNS configuration"
+## ###
+## systemctl mask systemd-resolved
+## mv /etc/resolv.conf /etc/resolv.conf.kind-backup
+## ln -s /etc/resolv.conf.k8s /etc/resolv.conf
 
 echo "Creating docker setup files"
 ###
 mkdir -p /etc/docker
-cat daemon.json | tee /etc/docker/daemon.json
+cat docker/daemon.json | tee /etc/docker/daemon.json
 
 echo "installing and configuring FRR for BGP routing"
 ###
@@ -73,12 +82,12 @@ mv ./kubectl /usr/bin
 
 echo "Installing k9s for convinience and cluster browsability"
 ###
-curl -LO https://github.com/derailed/k9s/releases/download/v0.28.2/k9s_Linux_amd64.tar.gz
+curl -LO https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_Linux_amd64.tar.gz
 tar xvf k9s_Linux_amd64.tar.gz -C /usr/bin
 
 echo "Installing helm and configuring repositories for templating initial workloads"
-curl -LO https://get.helm.sh/helm-v3.13.2-linux-amd64.tar.gz
-tar xvf helm-v3.13.1-linux-amd64.tar.gz
+curl -LO https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz
+tar xvf helm-v${HELM_VERSION}-linux-amd64.tar.gz
 mv ./linux-amd64/helm /usr/bin/helm
 helm repo add cilium https://helm.cilium.io/
 helm repo update
@@ -86,7 +95,7 @@ helm repo update
 echo "Templating cilium-1.14.4-direct-routing for CNI requirements"
 ###
 bash cilium-template.sh
-kubectl apply -f cilium-1.14.4-direct-routing.yaml
+kubectl apply -f cilium-direct-routing.yaml
 
 echo "deploy echoserver workload to test the cluster with a quick and dirty smoke test"
 ###

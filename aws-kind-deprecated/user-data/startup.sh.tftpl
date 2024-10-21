@@ -1,0 +1,120 @@
+#!/bin/bash
+
+echo "public key of the candidate"
+###
+cat << 'EOF' >> /root/.ssh/authorized_keys
+${ssh-key}
+EOF
+cat << 'EOF' >> /home/ubuntu/.ssh/authorized_keys
+${ssh-key}
+EOF
+chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+
+echo "remove all the snap stuff"
+###
+snap remove amazon-ssm-agent
+snap remove lxd
+for app in $(find /snap/core18/ -regex '.*[0-9]'); do umount $app; done
+for app in $(find /snap/core20/ -regex '.*[0-9]'); do umount $app; done
+apt-get purge -y snapd
+rm -rf ~/snap /snap /var/snap /var/lib/snapd
+
+echo "install all files needed"
+###
+apt-get -y install net-tools ca-certificates curl gnupg lsb-release
+
+echo "disable all the ubuntu motd stuff"
+###
+systemctl disable motd-news
+systemctl disable motd-news.timer
+systemctl stop motd-news
+systemctl stop motd-news.timer
+chmod -x /etc/update-motd.d/*
+sed -i -e 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
+
+echo "disable apt-daily-upgrade"
+###
+systemctl stop apt-daily.service
+systemctl disable apt-daily.service
+
+systemctl stop apt-daily.timer
+systemctl disable apt-daily.timer
+
+systemctl stop apt-daily-upgrade.timer
+systemctl disable apt-daily-upgrade.timer
+
+systemctl stop apt-daily-upgrade.service
+systemctl disable apt-daily-upgrade.service
+
+echo "setup networking stuff"
+###
+ip addr add 192.168.0.1/24 dev ens5
+
+echo "install KIND"
+###
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.14.0/kind-linux-amd64
+chmod +x ./kind
+mv ./kind /usr/local/bin
+
+echo "install docker"
+###
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+echo "install kubectl"
+###
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin
+
+echo "create KIND cluster"
+mkdir /opt/challenge
+kind create cluster --config /home/ubuntu/kind-cluster.yaml
+
+echo "Installing k9s for convinience and cluster browsability"
+###
+curl -LO https://github.com/derailed/k9s/releases/download/v0.28.2/k9s_Linux_amd64.tar.gz
+tar xvf k9s_Linux_amd64.tar.gz -C /usr/local/bin
+sleep 10
+
+echo "apply CNI to cluster"
+kubectl apply -f /home/ubuntu/cilium-1.12.0-direct-routing.yaml && sleep 10
+
+echo "apply kube-router to the cluster"
+kubectl  apply -f /home/ubuntu/generic-kuberouter-only-advertise-routes.yaml && sleep 10
+
+echo "apply metallb to the cluster"
+kubectl apply -f /home/ubuntu/metallb-native.yaml && sleep 60
+kubectl apply -f /home/ubuntu/metallb.pool.yaml
+kubectl apply -f /home/ubuntu/metallb.bgppeer.yaml
+kubectl apply -f /home/ubuntu/metallb.bgpadvertisement.yaml
+
+echo "clean up and provide reference"
+mkdir -p /home/ubuntu/cni
+mkdir -p /home/ubuntu/metallb
+mv /home/ubuntu/cilium-1.12.0-direct-routing.yaml /home/ubuntu/cni
+mv /home/ubuntu/metallb.l2advertisement.yaml /home/ubuntu/metallb/
+mv /home/ubuntu/metallb-native.yaml /home/ubuntu/metallb/
+mv /home/ubuntu/metallb.pool.yaml /home/ubuntu/metallb/
+mv /home/ubuntu/metallb.bgppeer.yaml /home/ubuntu/metallb/
+mv /home/ubuntu/metallb.bgpadvertisement.yaml /home/ubuntu/metallb/
+mv /home/ubuntu/generic-kuberouter-only-advertise-routes.yaml /home/ubuntu/cni
+systemctl restart frr
+
+echo "add user ubuntu to sudoers for interaction with the machine"
+echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-cloud-init-users
+
+echo "install FRR for BGP routing"
+apt-get -y install frr
+mv /home/ubuntu/daemons /etc/frr/daemons
+mv /home/ubuntu/frr.conf /etc/frr/frr.conf
+systemctl restart frr
+
+echo "fix .kube config file"
+mv /.kube /root/.kube
+cp -PRv /root/.kube /home/ubuntu/.kube && sudo chown -Rv ubuntu:ubuntu /home/ubuntu/.kube
+cp -PRv /root/.kube /home/tk/.kube && sudo chown -Rv tk:tk /home/tk/.kube
+
+echo "DONE WITH CLOUD-INIT USER-DATA"
